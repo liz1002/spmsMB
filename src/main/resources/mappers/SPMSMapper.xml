@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liz.dao.SPMSDAO">
+	<!-- resultMap -->
+	<resultMap type="SPMS" id="spmsResultMap">
+		<id property="no" column="no"/>
+		<result property="name" column="name"/>
+		<result property="content" column="content"/>
+		<result property="startdate" column="startdate"/>
+		<result property="enddate" column="enddate"/>
+		<result property="progress" column="progress"/>
+	</resultMap>
+	
+	<!-- sql -->
+	<select id="list" resultMap="spmsResultMap">
+		select * from spms
+	</select>
+	<select id="selectByNo" resultMap="spmsResultMap">
+		select * from spms where no=#{no}
+	</select>
+	<insert id="insert" parameterType="SPMS">
+		insert into spms value(
+			null, #{name}, #{content}, #{startdate}, #{enddate}, #{progress})
+	</insert>
+	<update id="update" parameterType="SPMS">
+		update spms 
+			set name=#{name}, content=#{content}, startdate=#{startdate}, enddate=#{enddate}, progress=#{progress}
+			where no=#{no}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from spms where no=#{no}
+	</delete>
+</mapper>
